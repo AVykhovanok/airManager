@@ -1,5 +1,6 @@
 package com.oles.airmanagement.controller;
 
+import com.oles.airmanagement.dto.airplane.AirplaneCompanyUpdate;
 import com.oles.airmanagement.dto.airplane.AirplaneRequest;
 import com.oles.airmanagement.dto.airplane.AirplaneResponse;
 import com.oles.airmanagement.service.AirplaneService;
@@ -40,6 +41,11 @@ public class AirplaneController {
     public ResponseEntity<AirplaneResponse> updateAirplane(
         @NotNull @PathVariable Long airplaneId, @Valid AirplaneRequest airplaneRequest) {
         return new ResponseEntity<>(airplaneService.update(airplaneId, airplaneRequest), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/company")
+    public ResponseEntity<AirplaneResponse> updateAirplane(@Valid AirplaneCompanyUpdate airplaneCompanyUpdate) {
+        return new ResponseEntity<>(airplaneService.updateCompany(airplaneCompanyUpdate), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{airplaneId}")

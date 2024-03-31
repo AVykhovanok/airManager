@@ -18,5 +18,5 @@ public interface AirCompanyService {
 
     AirCompanyResponse update(Long id, AirCompanyRequest airCompanyRequest);
 
-    void deleteById(Long id);
+    AirCompanyResponse deleteById(Long id);
 }

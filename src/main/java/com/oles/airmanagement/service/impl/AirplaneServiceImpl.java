@@ -1,6 +1,7 @@
 package com.oles.airmanagement.service.impl;
 
 import com.oles.airmanagement.converter.DtoConverter;
+import com.oles.airmanagement.dto.air_company.AirCompanyResponse;
 import com.oles.airmanagement.dto.airplane.AirplaneCompanyUpdate;
 import com.oles.airmanagement.dto.airplane.AirplaneRequest;
 import com.oles.airmanagement.dto.airplane.AirplaneResponse;
@@ -71,7 +72,9 @@ public class AirplaneServiceImpl implements AirplaneService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public AirplaneResponse deleteById(Long id) {
+        AirplaneResponse airplaneResponse = getAirPlaneResponseById(id);
         airplaneRepository.deleteById(id);
+        return airplaneResponse;
     }
 }

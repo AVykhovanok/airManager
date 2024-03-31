@@ -10,7 +10,6 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/air_company")
+@RequestMapping("/air_companies")
 public class AirCompanyController {
     private final AirCompanyService airCompanyService;
 
@@ -32,30 +31,30 @@ public class AirCompanyController {
 
     @GetMapping("/{airCompanyId}")
     public ResponseEntity<AirCompanyResponse> getAirCompanyResponseById(@NotNull @PathVariable Long airCompanyId) {
-        return new ResponseEntity<>(airCompanyService.getAirCompanyResponseById(airCompanyId), HttpStatus.OK);
+        return ResponseEntity.ok(airCompanyService.getAirCompanyResponseById(airCompanyId));
     }
 
     @GetMapping("/{flightStatus}/{airCompanyName}")
     public ResponseEntity<List<FlightResponse>> getAllAirCompanyFlightsByStatus(
         @NotNull @PathVariable("flightStatus") FlightStatus flightStatus,
-        @NotBlank @PathVariable("airCompanyName") String airCompanyName) {
-        return new ResponseEntity<>(airCompanyService
-            .getAllAirCompanyFlightsByStatus(airCompanyName, flightStatus), HttpStatus.OK);
+        @NotNull @NotBlank @PathVariable("airCompanyName") String airCompanyName) {
+        return ResponseEntity.ok(airCompanyService
+            .getAllAirCompanyFlightsByStatus(airCompanyName, flightStatus));
     }
 
     @PostMapping("/create")
     public ResponseEntity<AirCompanyResponse> createAirCompany(@Valid AirCompanyRequest airCompanyRequest) {
-        return new ResponseEntity<>(airCompanyService.create(airCompanyRequest), HttpStatus.OK);
+        return ResponseEntity.ok(airCompanyService.create(airCompanyRequest));
     }
 
     @PutMapping("/update/{airCompanyId}")
     public ResponseEntity<AirCompanyResponse> updateAirCompany(
         @NotNull @PathVariable Long airCompanyId, @Valid AirCompanyRequest airCompanyRequest) {
-        return new ResponseEntity<>(airCompanyService.update(airCompanyId, airCompanyRequest), HttpStatus.OK);
+        return ResponseEntity.ok(airCompanyService.update(airCompanyId, airCompanyRequest));
     }
 
     @DeleteMapping("/delete/{airCompanyId}")
-    public void deleteAirCompanyById(@NotNull @PathVariable Long airCompanyId) {
-        airCompanyService.deleteById(airCompanyId);
+    public ResponseEntity<AirCompanyResponse> deleteAirCompanyById(@NotNull @PathVariable Long airCompanyId) {
+        return ResponseEntity.ok(airCompanyService.deleteById(airCompanyId));
     }
 }

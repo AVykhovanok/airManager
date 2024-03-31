@@ -79,7 +79,9 @@ public class AirCompanyServiceImpl implements AirCompanyService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public AirCompanyResponse deleteById(Long id) {
+        AirCompanyResponse airCompanyResponse = getAirCompanyResponseById(id);
         airCompanyRepository.deleteById(id);
+        return airCompanyResponse;
     }
 }

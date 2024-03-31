@@ -1,5 +1,6 @@
 package com.oles.airmanagement.service;
 
+import com.oles.airmanagement.dto.air_company.AirCompanyResponse;
 import com.oles.airmanagement.dto.flight.FlightRequest;
 import com.oles.airmanagement.dto.flight.FlightResponse;
 import com.oles.airmanagement.utils.FlightStatus;
@@ -18,5 +19,5 @@ public interface FlightService {
 
     FlightResponse updateFlightStatus(Long flightId, FlightStatus flightStatus);
 
-    void deleteById(Long id);
+    FlightResponse deleteById(Long id);
 }

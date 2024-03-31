@@ -28,9 +28,11 @@ public class FlightRequest implements Convertible {
     @NotNull(message = "Airplane id should not be empty")
     Long airplaneId;
 
+    @NotNull
     @NotBlank(message = "Departure country should not be empty")
     String departureCountry;
 
+    @NotNull
     @NotBlank(message = "Destination country should not be empty")
     String destinationCountry;
 

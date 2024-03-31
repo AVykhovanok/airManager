@@ -7,7 +7,6 @@ import com.oles.airmanagement.service.AirplaneService;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/airplane")
+@RequestMapping("/airplanes")
 public class AirplaneController {
     private final AirplaneService airplaneService;
 
@@ -29,27 +28,27 @@ public class AirplaneController {
 
     @GetMapping("/{airplaneId}")
     public ResponseEntity<AirplaneResponse> getAirplaneResponseById(@NotNull @PathVariable Long airplaneId) {
-        return new ResponseEntity<>(airplaneService.getAirPlaneResponseById(airplaneId), HttpStatus.OK);
+        return ResponseEntity.ok(airplaneService.getAirPlaneResponseById(airplaneId));
     }
 
     @PostMapping("/create")
     public ResponseEntity<AirplaneResponse> createAirplane(@Valid AirplaneRequest airplaneRequest) {
-        return new ResponseEntity<>(airplaneService.create(airplaneRequest), HttpStatus.OK);
+        return ResponseEntity.ok(airplaneService.create(airplaneRequest));
     }
 
     @PutMapping("/update/{airplaneId}")
     public ResponseEntity<AirplaneResponse> updateAirplane(
         @NotNull @PathVariable Long airplaneId, @Valid AirplaneRequest airplaneRequest) {
-        return new ResponseEntity<>(airplaneService.update(airplaneId, airplaneRequest), HttpStatus.OK);
+        return ResponseEntity.ok(airplaneService.update(airplaneId, airplaneRequest));
     }
 
-    @PutMapping("/update/company")
+    @PutMapping("/update/companies")
     public ResponseEntity<AirplaneResponse> updateAirplane(@Valid AirplaneCompanyUpdate airplaneCompanyUpdate) {
-        return new ResponseEntity<>(airplaneService.updateCompany(airplaneCompanyUpdate), HttpStatus.OK);
+        return ResponseEntity.ok(airplaneService.updateCompany(airplaneCompanyUpdate));
     }
 
     @DeleteMapping("/delete/{airplaneId}")
-    public void deleteAirplaneById(@NotNull @PathVariable Long airplaneId) {
-        airplaneService.deleteById(airplaneId);
+    public ResponseEntity<AirplaneResponse> deleteAirplaneById(@NotNull @PathVariable Long airplaneId) {
+        return ResponseEntity.ok(airplaneService.deleteById(airplaneId));
     }
 }

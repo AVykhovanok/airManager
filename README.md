@@ -38,7 +38,7 @@ AirCompanyResponse update(Long id, AirCompanyRequest airCompanyRequest)
 ```
 /delete/{airCompanyId}
 
-void deleteById(Long id)
+AirCompanyResponse deleteById(Long id)
 ```
  
 Airplane ( /airplane ) :<br>
@@ -71,7 +71,7 @@ AirplaneResponse updateCompany(AirplaneCompanyUpdate airplaneCompanyUpdate)
 ```
 /delete/{airplaneId}
 
-void deleteById(Long id)
+AirplaneResponse deleteById(Long id)
 ```
 
 Flight ( /flight ) :<br>
@@ -115,7 +115,7 @@ FlightResponse updateFlightStatus(Long flightId, FlightStatus flightStatus)
 ```
 /delete/{flightId}
 
-void deleteById(Long id)
+FlightResponse deleteById(Long id)
 ```
 
 

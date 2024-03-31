@@ -20,6 +20,7 @@ import org.springframework.data.geo.Distance;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AirplaneRequest implements Convertible {
+    @NotNull
     @NotBlank(message = "Airplane name should not be empty")
     String name;
 

@@ -18,6 +18,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AirCompanyRequest implements Convertible {
+    @NotNull
     @NotBlank(message = "Air company should not be empty")
     String name;
 

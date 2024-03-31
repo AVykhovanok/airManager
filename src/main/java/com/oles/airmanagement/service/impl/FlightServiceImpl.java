@@ -1,6 +1,7 @@
 package com.oles.airmanagement.service.impl;
 
 import com.oles.airmanagement.converter.DtoConverter;
+import com.oles.airmanagement.dto.air_company.AirCompanyResponse;
 import com.oles.airmanagement.dto.flight.FlightRequest;
 import com.oles.airmanagement.dto.flight.FlightResponse;
 import com.oles.airmanagement.exception.AlreadyExistException;
@@ -47,7 +48,7 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public FlightResponse getFlightResponseById(Long id) {
-        return null;
+        return dtoConverter.convertToDto(getFlightById(id), Airplane.class);
     }
 
     public List<FlightResponse> getAllCompletedDelayedFlight() {
@@ -145,7 +146,9 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public FlightResponse deleteById(Long id) {
+        FlightResponse flightResponse = getFlightResponseById(id);
         flightRepository.deleteById(id);
+        return flightResponse;
     }
 }

@@ -1,6 +1,7 @@
 package com.oles.airmanagement.service;
 
 
+import com.oles.airmanagement.dto.air_company.AirCompanyResponse;
 import com.oles.airmanagement.dto.airplane.AirplaneCompanyUpdate;
 import com.oles.airmanagement.dto.airplane.AirplaneRequest;
 import com.oles.airmanagement.dto.airplane.AirplaneResponse;
@@ -17,5 +18,5 @@ public interface AirplaneService {
 
     AirplaneResponse updateCompany(AirplaneCompanyUpdate airplaneCompanyUpdate);
 
-    void deleteById(Long id);
+    AirplaneResponse deleteById(Long id);
 }

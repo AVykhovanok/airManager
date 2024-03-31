@@ -29,12 +29,12 @@ public class AirCompany implements Convertible {
     @Column(name = "air_company_id")
     Long airCompanyId;
 
-    @NotBlank
+    @Column(nullable = false)
     String name;
 
-    @NotNull
+    @Column(nullable = false)
     CompanyType companyType;
 
-    @NotNull
+    @Column(nullable = false)
     LocalDate foundedAt;
 }

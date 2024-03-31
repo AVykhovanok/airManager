@@ -3,11 +3,16 @@ package com.oles.airmanagement.service.impl;
 import com.oles.airmanagement.converter.DtoConverter;
 import com.oles.airmanagement.dto.air_company.AirCompanyRequest;
 import com.oles.airmanagement.dto.air_company.AirCompanyResponse;
+import com.oles.airmanagement.dto.flight.FlightResponse;
 import com.oles.airmanagement.exception.AlreadyExistException;
 import com.oles.airmanagement.exception.NotFoundException;
 import com.oles.airmanagement.model.AirCompany;
+import com.oles.airmanagement.model.Flight;
 import com.oles.airmanagement.repository.AirCompanyRepository;
 import com.oles.airmanagement.service.AirCompanyService;
+import com.oles.airmanagement.utils.FlightStatus;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.transaction.Transactional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +41,23 @@ public class AirCompanyServiceImpl implements AirCompanyService {
     @Override
     public AirCompanyResponse getAirCompanyResponseById(Long id) {
         return dtoConverter.convertToDto(getAirCompanyById(id), AirCompanyResponse.class);
+    }
+
+    @Override
+    public List<FlightResponse> getAllAirCompanyFlightsByStatus(String airCompanyName, FlightStatus flightStatus) {
+        List<Flight> allAirCompanyFlightsByStatus =
+            airCompanyRepository.getAllAirCompanyFlightsByStatus(airCompanyName, flightStatus);
+        if (allAirCompanyFlightsByStatus.isEmpty()) {
+            throw new NotFoundException(
+                String.format("Not found %s flights in %s ", flightStatus.toString(), airCompanyName));
+        }
+        return allAirCompanyFlightsByStatus.stream()
+            .map(this::convertToFlightResponse)
+            .collect(Collectors.toList());
+    }
+
+    FlightResponse convertToFlightResponse(Flight flight) {
+        return dtoConverter.convertToDto(flight, FlightResponse.class);
     }
 
     @Override

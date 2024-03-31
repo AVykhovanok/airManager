@@ -50,7 +50,7 @@ public class FlightServiceImpl implements FlightService {
         return null;
     }
 
-    public List<FlightResponse> getAllCompletedFlightWithFlightTimeBiggerThenEstimated() {
+    public List<FlightResponse> getAllCompletedDelayedFlight() {
         List<Flight> completedFlights = flightRepository.getAllCompletedFlight();
         return completedFlights.stream()
             .filter(this::checkFlightTimeBiggerThenEstimated)
@@ -58,9 +58,17 @@ public class FlightServiceImpl implements FlightService {
             .collect(Collectors.toList());
     }
 
+    @Override
+    public List<FlightResponse> getAllActiveFlightStartedYesterday() {
+        return flightRepository.getAllActiveFlightStartedYesterday().stream()
+            .map(this::convertToFlightResponse)
+            .collect(Collectors.toList());
+    }
+
     FlightResponse convertToFlightResponse(Flight flight) {
         return dtoConverter.convertToDto(flight, FlightResponse.class);
     }
+
     Boolean checkFlightTimeBiggerThenEstimated(Flight flight) {
         Duration actualDuration = Duration.between(flight.getStartedAt(), flight.getEndedAt());
         return flight.getEstimatedFlightTime().compareTo(actualDuration) < 0;
@@ -124,15 +132,14 @@ public class FlightServiceImpl implements FlightService {
         Flight flight = getFlightById(flightId);
         LocalDateTime now = LocalDateTime.now();
         switch (flightStatus) {
-            case ACTIVE:
-                flight.setStartedAt(now);
-                break;
-            case DELAYED:
-                flight.setDelayStartedAt(now);
-                break;
-            case COMPLETED:
-                flight.setEndedAt(now);
-                break;
+          case ACTIVE: flight.setStartedAt(now);
+            break;
+          case DELAYED: flight.setDelayStartedAt(now);
+            break;
+          case COMPLETED: flight.setEndedAt(now);
+            break;
+          default: throw new NotFoundException(
+                String.format("Not found flight status -> %s", flightStatus.toString()));
         }
         return dtoConverter.convertToDto(flightRepository.save(flight), FlightResponse.class);
     }

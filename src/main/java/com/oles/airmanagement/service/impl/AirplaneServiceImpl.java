@@ -1,6 +1,7 @@
 package com.oles.airmanagement.service.impl;
 
 import com.oles.airmanagement.converter.DtoConverter;
+import com.oles.airmanagement.dto.airplane.AirplaneCompanyUpdate;
 import com.oles.airmanagement.dto.airplane.AirplaneRequest;
 import com.oles.airmanagement.dto.airplane.AirplaneResponse;
 import com.oles.airmanagement.exception.AlreadyExistException;
@@ -61,9 +62,10 @@ public class AirplaneServiceImpl implements AirplaneService {
         return dtoConverter.convertToDto(airplaneRepository.save(airplane), AirplaneResponse.class);
     }
 
-    public AirplaneResponse updateCompany(Long airplaneId, Long airCompanyId) {
-        Airplane airplane = getAirplaneById(airplaneId);
-        AirCompany airCompany = airCompanyService.getAirCompanyById(airCompanyId);
+    @Override
+    public AirplaneResponse updateCompany(AirplaneCompanyUpdate airplaneCompanyUpdate) {
+        Airplane airplane = getAirplaneById(airplaneCompanyUpdate.getAirplaneId());
+        AirCompany airCompany = airCompanyService.getAirCompanyById(airplaneCompanyUpdate.getAirCompanyId());
         airplane.setAirCompany(airCompany);
         return dtoConverter.convertToDto(airplaneRepository.save(airplane), AirplaneResponse.class);
     }

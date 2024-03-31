@@ -37,7 +37,8 @@ public class AirplaneController {
     }
 
     @PutMapping("/update/{airplaneId}")
-    public ResponseEntity<AirplaneResponse> updateAirplane(@NotNull @PathVariable Long airplaneId, @Valid AirplaneRequest airplaneRequest) {
+    public ResponseEntity<AirplaneResponse> updateAirplane(
+        @NotNull @PathVariable Long airplaneId, @Valid AirplaneRequest airplaneRequest) {
         return new ResponseEntity<>(airplaneService.update(airplaneId, airplaneRequest), HttpStatus.OK);
     }
 

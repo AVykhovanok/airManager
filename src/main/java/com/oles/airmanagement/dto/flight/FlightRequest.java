@@ -2,7 +2,7 @@ package com.oles.airmanagement.dto.flight;
 
 import com.oles.airmanagement.converter.mark.Convertible;
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -43,8 +43,8 @@ public class FlightRequest implements Convertible {
     Duration estimatedFlightTime;
 
     @NotNull(message = "Start date should not be empty")
-    LocalDateTime startedAt;
+    Instant startedAt;
 
     @NotNull(message = "End date should not be empty")
-    LocalDateTime endedAt;
+    Instant endedAt;
 }

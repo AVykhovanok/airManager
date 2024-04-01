@@ -3,7 +3,7 @@ package com.oles.airmanagement.model;
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.AirplaneType;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -57,5 +57,5 @@ public class Airplane implements Convertible {
     AirplaneType type;
 
     @Column(nullable = false)
-    LocalDateTime createdAt;
+    Instant createdAt;
 }

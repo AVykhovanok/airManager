@@ -2,7 +2,7 @@ package com.oles.airmanagement.dto.air_company;
 
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.CompanyType;
-import java.time.LocalDate;
+import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,5 +22,5 @@ public class AirCompanyResponse implements Convertible {
 
     CompanyType companyType;
 
-    LocalDate foundedAt;
+    Instant foundedAt;
 }

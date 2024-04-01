@@ -1,7 +1,7 @@
 package com.oles.airmanagement.dto.exception;
 
 import com.oles.airmanagement.converter.mark.Convertible;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,5 +20,5 @@ public class ExceptionResponse implements Convertible {
 
     HttpStatus status;
 
-    LocalDateTime timeStamp;
+    Instant timeStamp;
 }

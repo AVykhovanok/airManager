@@ -2,7 +2,7 @@ package com.oles.airmanagement.model;
 
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.CompanyType;
-import java.time.LocalDate;
+import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,5 +34,5 @@ public class AirCompany implements Convertible {
     CompanyType companyType;
 
     @Column(nullable = false)
-    LocalDate foundedAt;
+    Instant foundedAt;
 }

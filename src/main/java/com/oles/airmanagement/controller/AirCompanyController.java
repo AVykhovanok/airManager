@@ -46,7 +46,8 @@ public class AirCompanyController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AirCompanyResponse> createAirCompany(@Valid @RequestBody AirCompanyRequest airCompanyRequest) {
+    public ResponseEntity<AirCompanyResponse> createAirCompany(
+        @Valid @RequestBody AirCompanyRequest airCompanyRequest) {
         System.out.println(airCompanyRequest.getName());
         System.out.println(airCompanyRequest.getCompanyType());
         System.out.println(airCompanyRequest.getFoundedAt());

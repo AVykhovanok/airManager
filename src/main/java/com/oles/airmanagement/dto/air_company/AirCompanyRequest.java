@@ -2,7 +2,7 @@ package com.oles.airmanagement.dto.air_company;
 
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.CompanyType;
-import java.time.LocalDate;
+import java.time.Instant;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -26,5 +26,5 @@ public class AirCompanyRequest implements Convertible {
     CompanyType companyType;
 
     @NotNull(message = "Foundation date should not be empty")
-    LocalDate foundedAt;
+    Instant foundedAt;
 }

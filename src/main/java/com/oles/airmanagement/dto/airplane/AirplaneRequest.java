@@ -3,7 +3,7 @@ package com.oles.airmanagement.dto.airplane;
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.AirplaneType;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import lombok.AccessLevel;
@@ -41,5 +41,5 @@ public class AirplaneRequest implements Convertible {
     AirplaneType type;
 
     @NotNull(message = "Created date should not be empty")
-    LocalDateTime createdAt;
+    Instant createdAt;
 }

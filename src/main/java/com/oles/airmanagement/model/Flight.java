@@ -3,7 +3,7 @@ package com.oles.airmanagement.model;
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.FlightStatus;
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
@@ -63,14 +63,14 @@ public class Flight implements Convertible {
     Duration estimatedFlightTime;
 
     @Column(nullable = false)
-    LocalDateTime startedAt;
+    Instant startedAt;
 
     @Column(nullable = false)
-    LocalDateTime endedAt;
+    Instant endedAt;
 
-    LocalDateTime delayStartedAt;
+    Instant delayStartedAt;
 
     @Column(nullable = false)
-    LocalDateTime createdAt;
+    Instant createdAt;
 }
 

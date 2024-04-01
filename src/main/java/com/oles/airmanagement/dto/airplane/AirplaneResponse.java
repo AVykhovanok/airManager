@@ -4,7 +4,7 @@ import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.model.AirCompany;
 import com.oles.airmanagement.utils.AirplaneType;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +35,5 @@ public class AirplaneResponse implements Convertible {
 
     AirplaneType type;
 
-    LocalDateTime createdAt;
+    Instant createdAt;
 }

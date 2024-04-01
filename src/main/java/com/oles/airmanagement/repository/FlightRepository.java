@@ -1,7 +1,7 @@
 package com.oles.airmanagement.repository;
 
 import com.oles.airmanagement.model.Flight;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -30,5 +30,5 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
         + " END"
         + " FROM Flight f"
         + " WHERE f.airplane.airplaneId =:airplaneId")
-    Boolean existsFlightByAirplaneIdAndDateRange(Long airplaneId, LocalDateTime startedAt, LocalDateTime endedAt);
+    Boolean existsFlightByAirplaneIdAndDateRange(Long airplaneId, Instant startedAt, Instant endedAt);
 }

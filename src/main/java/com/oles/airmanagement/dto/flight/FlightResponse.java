@@ -3,7 +3,7 @@ package com.oles.airmanagement.dto.flight;
 import com.oles.airmanagement.converter.mark.Convertible;
 import com.oles.airmanagement.utils.FlightStatus;
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,11 +34,11 @@ public class FlightResponse implements Convertible {
 
     Duration estimatedFlightTime;
 
-    LocalDateTime startedAt;
+    Instant startedAt;
 
-    LocalDateTime endedAt;
+    Instant endedAt;
 
-    LocalDateTime delayStartedAt;
+    Instant delayStartedAt;
 
-    LocalDateTime createdAt;
+    Instant createdAt;
 }

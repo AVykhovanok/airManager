@@ -14,7 +14,7 @@ import com.oles.airmanagement.service.AirplaneService;
 import com.oles.airmanagement.service.FlightService;
 import com.oles.airmanagement.utils.FlightStatus;
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.transaction.Transactional;
@@ -94,7 +94,7 @@ public class FlightServiceImpl implements FlightService {
             .estimatedFlightTime(flightRequest.getEstimatedFlightTime())
             .startedAt(flightRequest.getStartedAt())
             .endedAt(flightRequest.getEndedAt())
-            .createdAt(LocalDateTime.now())
+            .createdAt(Instant.now())
             .build();
         flight = flightRepository.save(flight);
         return dtoConverter.convertToDto(flight, FlightResponse.class);
@@ -130,7 +130,7 @@ public class FlightServiceImpl implements FlightService {
 
     public FlightResponse updateFlightStatus(Long flightId, FlightStatus flightStatus) {
         Flight flight = getFlightById(flightId);
-        LocalDateTime now = LocalDateTime.now();
+        Instant now = Instant.now();
         switch (flightStatus) {
           case ACTIVE: flight.setStartedAt(now);
             break;

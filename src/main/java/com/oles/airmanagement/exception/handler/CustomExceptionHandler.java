@@ -4,7 +4,7 @@ import com.oles.airmanagement.dto.exception.ExceptionMapResponse;
 import com.oles.airmanagement.dto.exception.ExceptionResponse;
 import com.oles.airmanagement.exception.AlreadyExistException;
 import com.oles.airmanagement.exception.NotFoundException;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.AllArgsConstructor;
@@ -44,7 +44,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             .builder()
             .status(httpStatus)
             .message(exception.getMessage())
-            .timeStamp(LocalDateTime.now())
+            .timeStamp(Instant.now())
             .build();
         return ResponseEntity
             .status(httpStatus)
@@ -63,7 +63,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
             .builder()
             .status(status)
             .messageMap(map)
-            .timeStamp(LocalDateTime.now())
+            .timeStamp(Instant.now())
             .build();
         return ResponseEntity.status(status).body(exceptionMapResponse);
     }

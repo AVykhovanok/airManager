@@ -44,7 +44,8 @@ public class AirplaneController {
     }
 
     @PutMapping("/update/companies")
-    public ResponseEntity<AirplaneResponse> updateAirplaneCompany(@Valid @RequestBody AirplaneCompanyUpdate airplaneCompanyUpdate) {
+    public ResponseEntity<AirplaneResponse> updateAirplaneCompany(
+        @Valid @RequestBody AirplaneCompanyUpdate airplaneCompanyUpdate) {
         return ResponseEntity.ok(airplaneService.updateCompany(airplaneCompanyUpdate));
     }
 

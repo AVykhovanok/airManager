@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  air-management:
+    image: air-manager:001
+    restart: always
+    ports:
+      - "9090:9090"
+    depends_on:
+      - db

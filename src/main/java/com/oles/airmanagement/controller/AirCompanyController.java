@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -38,18 +39,23 @@ public class AirCompanyController {
     public ResponseEntity<List<FlightResponse>> getAllAirCompanyFlightsByStatus(
         @NotNull @PathVariable("flightStatus") FlightStatus flightStatus,
         @NotNull @NotBlank @PathVariable("airCompanyName") String airCompanyName) {
+        System.out.println(flightStatus);
+        System.out.println(airCompanyName);
         return ResponseEntity.ok(airCompanyService
             .getAllAirCompanyFlightsByStatus(airCompanyName, flightStatus));
     }
 
     @PostMapping("/create")
-    public ResponseEntity<AirCompanyResponse> createAirCompany(@Valid AirCompanyRequest airCompanyRequest) {
+    public ResponseEntity<AirCompanyResponse> createAirCompany(@Valid @RequestBody AirCompanyRequest airCompanyRequest) {
+        System.out.println(airCompanyRequest.getName());
+        System.out.println(airCompanyRequest.getCompanyType());
+        System.out.println(airCompanyRequest.getFoundedAt());
         return ResponseEntity.ok(airCompanyService.create(airCompanyRequest));
     }
 
     @PutMapping("/update/{airCompanyId}")
     public ResponseEntity<AirCompanyResponse> updateAirCompany(
-        @NotNull @PathVariable Long airCompanyId, @Valid AirCompanyRequest airCompanyRequest) {
+        @NotNull @PathVariable Long airCompanyId, @Valid @RequestBody AirCompanyRequest airCompanyRequest) {
         return ResponseEntity.ok(airCompanyService.update(airCompanyId, airCompanyRequest));
     }
 

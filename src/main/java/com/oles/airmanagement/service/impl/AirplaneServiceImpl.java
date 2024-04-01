@@ -41,7 +41,7 @@ public class AirplaneServiceImpl implements AirplaneService {
 
     @Override
     public AirplaneResponse getAirPlaneResponseById(Long id) {
-        return dtoConverter.convertToDto(getAirplaneById(id), Airplane.class);
+        return dtoConverter.convertToDto(getAirplaneById(id), AirplaneResponse.class);
     }
 
     @Override

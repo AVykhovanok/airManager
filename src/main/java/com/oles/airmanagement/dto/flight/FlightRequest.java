@@ -1,6 +1,7 @@
 package com.oles.airmanagement.dto.flight;
 
 import com.oles.airmanagement.converter.mark.Convertible;
+import com.oles.airmanagement.utils.FlightStatus;
 import java.time.Duration;
 import java.time.Instant;
 import javax.validation.constraints.NotBlank;
@@ -20,7 +21,7 @@ import org.springframework.data.geo.Distance;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class FlightRequest implements Convertible {
     @NotNull(message = "Flight should not be empty")
-    String flightStatus;
+    FlightStatus flightStatus;
 
     @NotNull(message = "Air company id should not be empty")
     Long airCompanyId;

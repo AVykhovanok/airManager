@@ -20,15 +20,10 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
         + " WHERE f.flightStatus = 'COMPLETED'")
     List<Flight> getAllCompletedFlight();
 
-    Boolean existsFlightByFlightId(Long id);
-
-    @Query("SELECT CASE"
-        + " WHEN f.startedAt BETWEEN :startedAt and :endedAt"
-        + " OR f.endedAt BETWEEN :startedAt and :endedAt"
-        + " THEN true"
-        + " ELSE false"
-        + " END"
+    @Query("SELECT f"
         + " FROM Flight f"
-        + " WHERE f.airplane.airplaneId =:airplaneId")
-    Boolean existsFlightByAirplaneIdAndDateRange(Long airplaneId, Instant startedAt, Instant endedAt);
+        + " WHERE f.airplane.airplaneId =:airplaneId"
+        + " AND f.startedAt BETWEEN :startedAt AND :endedAt"
+        + " OR f.endedAt BETWEEN :startedAt and :endedAt")
+    List<Flight> getAllFlightByAirplaneIdAndDateRange(Long airplaneId, Instant startedAt, Instant endedAt);
 }

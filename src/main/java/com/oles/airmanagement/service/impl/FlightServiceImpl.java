@@ -47,7 +47,7 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public FlightResponse getFlightResponseById(Long id) {
-        return dtoConverter.convertToDto(getFlightById(id), Airplane.class);
+        return dtoConverter.convertToDto(getFlightById(id), FlightResponse.class);
     }
 
     public List<FlightResponse> getAllCompletedDelayedFlight() {
@@ -71,15 +71,15 @@ public class FlightServiceImpl implements FlightService {
 
     Boolean checkFlightTimeBiggerThenEstimated(Flight flight) {
         Duration actualDuration = Duration.between(flight.getStartedAt(), flight.getEndedAt());
-        return flight.getEstimatedFlightTime().compareTo(actualDuration) < 0;
+        return flight.getEstimatedFlightTime().compareTo(actualDuration) > 0;
     }
 
     @Override
     public FlightResponse create(FlightRequest flightRequest) {
         AirCompany airCompany = airCompanyService.getAirCompanyById(flightRequest.getAirCompanyId());
         Airplane airplane = airplaneService.getAirplaneById(flightRequest.getAirplaneId());
-        if (flightRepository.existsFlightByAirplaneIdAndDateRange(
-            airplane.getAirplaneId(), flightRequest.getStartedAt(), flightRequest.getEndedAt())) {
+        if (!flightRepository.getAllFlightByAirplaneIdAndDateRange(
+            airplane.getAirplaneId(), flightRequest.getStartedAt(), flightRequest.getEndedAt()).isEmpty()) {
             throw new AlreadyExistException(String.format(
                 "Not available airplane with id -> %d in this range startedAt -> %s and endedAt -> %s",
                 airplane.getAirplaneId(), flightRequest.getStartedAt(), flightRequest.getEndedAt()));
@@ -105,15 +105,9 @@ public class FlightServiceImpl implements FlightService {
         AirCompany airCompany = airCompanyService.getAirCompanyById(flightRequest.getAirCompanyId());
         Airplane airplane = airplaneService.getAirplaneById(flightRequest.getAirplaneId());
         Flight flight = getFlightById(id);
-        if (flightRepository.existsFlightByAirplaneIdAndDateRange(
-            airplane.getAirplaneId(), flightRequest.getStartedAt(), flightRequest.getEndedAt())) {
-            throw new AlreadyExistException(
-                String.format("Not available airplane with id -> %d in this range startedAt -> %s and endedAt -> %s",
-                    airplane.getAirplaneId(), flightRequest.getStartedAt(), flightRequest.getEndedAt()));
-        }
         Flight newFlight = Flight.builder()
             .flightId(flight.getFlightId())
-            .flightStatus(FlightStatus.getFlightStatus(flightRequest.getFlightStatus()))
+            .flightStatus(flightRequest.getFlightStatus())
             .airCompany(airCompany)
             .airplane(airplane)
             .departureCountry(flightRequest.getDepartureCountry())
@@ -131,6 +125,7 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponse updateFlightStatus(Long flightId, FlightStatus flightStatus) {
         Flight flight = getFlightById(flightId);
         Instant now = Instant.now();
+        flight.setFlightStatus(flightStatus);
         switch (flightStatus) {
           case ACTIVE: flight.setStartedAt(now);
             break;

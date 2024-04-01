@@ -5,14 +5,14 @@ services:
     image: mysql
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: rootroot
 
   air-management:
     image: air-manager:001
     restart: always
     ports:
-      - "9090:9090"
+      - "9090:8080"
     depends_on:
       - db

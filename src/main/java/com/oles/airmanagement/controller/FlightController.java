@@ -55,7 +55,7 @@ public class FlightController {
     }
 
     @PutMapping("/update/{flightId}/statuses/{flightStatus}")
-    public ResponseEntity<FlightResponse> updateAirplane(@NotNull @PathVariable("flightId") Long flightId,
+    public ResponseEntity<FlightResponse> updateFlightStatus(@NotNull @PathVariable("flightId") Long flightId,
         @PathVariable("flightStatus") FlightStatus flightStatus) {
         return ResponseEntity.ok(flightService.updateFlightStatus(flightId, flightStatus));
     }

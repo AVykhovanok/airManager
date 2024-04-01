@@ -39,8 +39,6 @@ public class AirCompanyController {
     public ResponseEntity<List<FlightResponse>> getAllAirCompanyFlightsByStatus(
         @NotNull @PathVariable("flightStatus") FlightStatus flightStatus,
         @NotNull @NotBlank @PathVariable("airCompanyName") String airCompanyName) {
-        System.out.println(flightStatus);
-        System.out.println(airCompanyName);
         return ResponseEntity.ok(airCompanyService
             .getAllAirCompanyFlightsByStatus(airCompanyName, flightStatus));
     }
@@ -48,9 +46,6 @@ public class AirCompanyController {
     @PostMapping("/create")
     public ResponseEntity<AirCompanyResponse> createAirCompany(
         @Valid @RequestBody AirCompanyRequest airCompanyRequest) {
-        System.out.println(airCompanyRequest.getName());
-        System.out.println(airCompanyRequest.getCompanyType());
-        System.out.println(airCompanyRequest.getFoundedAt());
         return ResponseEntity.ok(airCompanyService.create(airCompanyRequest));
     }
 

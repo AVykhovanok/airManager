@@ -5,6 +5,8 @@ import com.oles.airmanagement.utils.CompanyType;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,6 +33,7 @@ public class AirCompany implements Convertible {
     String name;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     CompanyType companyType;
 
     @Column(nullable = false)

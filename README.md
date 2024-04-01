@@ -143,6 +143,8 @@ __Steps__
 * Enter your MySQL credentials
 * Run -> mvn clean
 * Run -> mvn package
+* Run -> start your Docker
 * Run -> docker build -t air-manager:001 .
 * Run -> docker-compose up
+* Finally everything works)
 

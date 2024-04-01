@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "37ea1e36-6e17-4b45-beb0-f7e803454510",
+		"name": "air-management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "9720368"
+	},
+	"item": [
+		{
+			"name": "air-company",
+			"item": [
+				{
+					"name": "getAirCompanyResponseById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/air_companies/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllAirCompanyFlightsByStatus",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/air_companies/ACTIVE/name1"
+					},
+					"response": []
+				},
+				{
+					"name": "createAirCompany",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"name4\",\r\n    \"companyType\":\"CHARTER\",\r\n    \"foundedAt\":\"2015-01-02T17:51:45.043Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/air_companies/create"
+					},
+					"response": []
+				},
+				{
+					"name": "updateAirCompany",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"name1\",\r\n    \"companyType\":\"CHARTER\",\r\n    \"foundedAt\":\"2015-12-02T17:51:45.043Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/air_companies/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAirCompanyById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:9090/air_companies/delete/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "airplane",
+			"item": [
+				{
+					"name": "getAirplaneResponseById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/airplanes/1"
+					},
+					"response": []
+				},
+				{
+					"name": "createAirplane",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"name4\",\r\n    \"factorySerialNumber\": 1235,\r\n    \"flightDistance\": 2000.0,\r\n    \"fuelCapacity\": 2000,\r\n    \"type\": \"PRIVATE\",\r\n    \"createdAt\": \"2015-01-02T17:51:45.043Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/airplanes/create"
+					},
+					"response": []
+				},
+				{
+					"name": "updateAirplane",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"name1\",\r\n    \"factorySerialNumber\": 1234,\r\n    \"flightDistance\": 2000.0,\r\n    \"fuelCapacity\": 2000,\r\n    \"type\": \"PRIVATE\",\r\n    \"createdAt\": \"2015-01-02T17:51:45.043Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/airplanes/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "updateAirplaneCompany",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"airplaneId\" : 1,\r\n    \"airCompanyId\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/airplanes/update/companies"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAirplaneById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:9090/airplanes/delete/4"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "flights",
+			"item": [
+				{
+					"name": "getFlightResponseById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/flights/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllActiveFlightStartedYesterday",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/flights/active_from_yesterday"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllCompletedFlightWithFlightTimeBiggerThenEstimated",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:9090/flights/delayed/statuses/completed"
+					},
+					"response": []
+				},
+				{
+					"name": "createFlight",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightStatus\" : \"PENDING\",\r\n    \"airCompanyId\" : 1,\r\n    \"airplaneId\" : 1,\r\n    \"departureCountry\" : \"departureCountry1\",\r\n    \"destinationCountry\" : \"destinationCountry1\",\r\n    \"distance\" : 2000.0,\r\n    \"estimatedFlightTime\" : 1,\r\n    \"startedAt\" : \"2015-01-01T17:51:45.043Z\",\r\n    \"endedAt\" : \"2015-01-02T17:51:45.043Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/flights/create"
+					},
+					"response": []
+				},
+				{
+					"name": "updateFlight",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"flightStatus\" : \"ACTIVE\",\r\n    \"airCompanyId\" : 1,\r\n    \"airplaneId\" : 1,\r\n    \"departureCountry\" : \"departureCountry1\",\r\n    \"destinationCountry\" : \"destinationCountry1\",\r\n    \"distance\" : 2000.0,\r\n    \"estimatedFlightTime\" : 123,\r\n    \"startedAt\" : \"2015-01-01T17:51:45.043Z\",\r\n    \"endedAt\" : \"2015-11-04T17:51:45.043Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/flights/update/1"
+					},
+					"response": []
+				},
+				{
+					"name": "updateFlightStatus",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:9090/flights/update/1/statuses/ACTIVE"
+					},
+					"response": []
+				},
+				{
+					"name": "deleteAirplaneById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "localhost:9090/flights/delete/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

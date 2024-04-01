@@ -141,4 +141,8 @@ FlightResponse deleteById(Long id)
 __Steps__
 * Clone this repo
 * Enter your MySQL credentials
-* Start the project
+* Run -> mvn clean
+* Run -> mvn package
+* Run -> docker build -t air-manager:001 .
+* Run -> docker-compose up
+

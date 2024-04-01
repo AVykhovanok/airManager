@@ -6,8 +6,6 @@ import java.time.Duration;
 import java.time.Instant;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +34,6 @@ public class Flight implements Convertible {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long flightId;
 
-    @Enumerated(EnumType.STRING)
     FlightStatus flightStatus;
 
     @ManyToOne(optional = false)

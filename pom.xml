@@ -84,6 +84,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>air-manager-docker</finalName>
     </build>
 
 </project>

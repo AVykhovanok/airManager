@@ -9,7 +9,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootroot
 
-  air-management:
+  server:
     image: air-manager:001
     restart: always
     ports:
